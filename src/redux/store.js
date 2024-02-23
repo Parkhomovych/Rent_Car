@@ -20,6 +20,7 @@ const persistConfig = {
 export const store = configureStore({
   reducer: {
     cars: persistReducer(persistConfig, carsReduser),
+    
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

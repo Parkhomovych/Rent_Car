@@ -2,12 +2,11 @@ import { createSlice } from '@reduxjs/toolkit';
 import { getCars } from './operations';
 
 const carSlice = createSlice({
-  name: 'car',
+  name: 'cars',
   initialState: {
-    carList: [],
+    carsList: [],
     favoriteList: [],
     filters: {
-      brand: '',
       priceHour: 0,
       carMileage: {
         from: 0,
@@ -18,24 +17,24 @@ const carSlice = createSlice({
     isLoading: false,
   },
   reducers: {
-    filtersCar(state, action) {
+    filtersCars(state, action) {
       // тут в payload має прилітати обʼєкт фільтрів
       state.filters = action.payload;
     },
-    addFavoriteCar(state, action) {
+    addFavoriteCars(state, action) {
       // тут в payload має прилітати обʼєкт однієї машини
       state.favoriteList = [...state.favoriteList, action.payload];
     },
   },
   extraReducers: builder => {
-    builder
+    builder // cars/getCars/pending
       .addCase(getCars.pending, (state, a) => {
         state.isLoading = true;
       })
       .addCase(getCars.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.carList = [...action.payload];
+        state.carsList = [...action.payload];
       })
       .addCase(getCars.rejected, (state, action) => {
         state.isLoading = false;
@@ -44,4 +43,4 @@ const carSlice = createSlice({
   },
 });
 export const carsReduser = carSlice.reducer;
-export const { filtersCar, addFavoriteCar } = carSlice.actions;
+export const { filtersCars, addFavoriteCars } = carSlice.actions;
