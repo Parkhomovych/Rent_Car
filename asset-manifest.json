@@ -1,19 +1,23 @@
 {
   "files": {
-    "main.css": "/Rent_Car/static/css/main.7acaea2f.css",
-    "main.js": "/Rent_Car/static/js/main.70c86939.js",
-    "static/js/544.0d0aa127.chunk.js": "/Rent_Car/static/js/544.0d0aa127.chunk.js",
-    "static/js/822.2dd543c5.chunk.js": "/Rent_Car/static/js/822.2dd543c5.chunk.js",
-    "static/js/733.63f26c70.chunk.js": "/Rent_Car/static/js/733.63f26c70.chunk.js",
+    "main.css": "/Rent_Car/static/css/main.0aed2b0f.css",
+    "main.js": "/Rent_Car/static/js/main.97bf7942.js",
+    "static/js/544.c8a1a3ac.chunk.js": "/Rent_Car/static/js/544.c8a1a3ac.chunk.js",
+    "static/js/788.49c8f6ad.chunk.js": "/Rent_Car/static/js/788.49c8f6ad.chunk.js",
+    "static/js/733.264ad3b7.chunk.js": "/Rent_Car/static/js/733.264ad3b7.chunk.js",
+    "static/js/50.64e4b9e3.chunk.js": "/Rent_Car/static/js/50.64e4b9e3.chunk.js",
+    "static/js/277.b9bff9a9.chunk.js": "/Rent_Car/static/js/277.b9bff9a9.chunk.js",
     "index.html": "/Rent_Car/index.html",
-    "main.7acaea2f.css.map": "/Rent_Car/static/css/main.7acaea2f.css.map",
-    "main.70c86939.js.map": "/Rent_Car/static/js/main.70c86939.js.map",
-    "544.0d0aa127.chunk.js.map": "/Rent_Car/static/js/544.0d0aa127.chunk.js.map",
-    "822.2dd543c5.chunk.js.map": "/Rent_Car/static/js/822.2dd543c5.chunk.js.map",
-    "733.63f26c70.chunk.js.map": "/Rent_Car/static/js/733.63f26c70.chunk.js.map"
+    "main.0aed2b0f.css.map": "/Rent_Car/static/css/main.0aed2b0f.css.map",
+    "main.97bf7942.js.map": "/Rent_Car/static/js/main.97bf7942.js.map",
+    "544.c8a1a3ac.chunk.js.map": "/Rent_Car/static/js/544.c8a1a3ac.chunk.js.map",
+    "788.49c8f6ad.chunk.js.map": "/Rent_Car/static/js/788.49c8f6ad.chunk.js.map",
+    "733.264ad3b7.chunk.js.map": "/Rent_Car/static/js/733.264ad3b7.chunk.js.map",
+    "50.64e4b9e3.chunk.js.map": "/Rent_Car/static/js/50.64e4b9e3.chunk.js.map",
+    "277.b9bff9a9.chunk.js.map": "/Rent_Car/static/js/277.b9bff9a9.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.7acaea2f.css",
-    "static/js/main.70c86939.js"
+    "static/css/main.0aed2b0f.css",
+    "static/js/main.97bf7942.js"
   ]
 }
