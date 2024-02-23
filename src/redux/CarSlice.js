@@ -9,10 +9,8 @@ const carSlice = createSlice({
     filters: {
       brand: '',
       price: '',
-      mileage: {
-        from: '',
-        to: '',
-      },
+      from: '',
+      to: '',
     },
     error: null,
     isLoading: false,

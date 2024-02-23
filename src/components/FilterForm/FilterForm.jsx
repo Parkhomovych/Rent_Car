@@ -3,18 +3,10 @@ import * as FilterStyle from './FilterForm.styled';
 import { filterBrand } from '../../redux/selectors';
 import { useDispatch } from 'react-redux';
 import { filtersCars } from '../../redux/CarSlice';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormHelperText from '@mui/material/FormHelperText';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import { useState } from 'react';
+
 export const FilterForm = () => {
-  const [age, setAge] = useState('');
-  const handleChange = event => {
-    setAge(event.target.value);
-  };
   const dispatch = useDispatch();
+
   const optionBrand = () => {
     const option = [];
     for (let i = 0; i < filterBrand.length; i += 1) {
@@ -26,7 +18,7 @@ export const FilterForm = () => {
     }
     return option;
   };
-  const optionVrice = () => {
+  const optionPrice = () => {
     const option = [];
     for (let i = 30; i <= 500; i += 10) {
       option.push(
@@ -44,45 +36,39 @@ export const FilterForm = () => {
         initialValues={{
           brand: '',
           price: '',
-          mileage: {
-            from: '',
-            to: '',
-          },
+          from: '',
+          to: '',
         }}
         onSubmit={e => {
           dispatch(filtersCars(e));
         }}
       >
-        {({ isSubmitting }) => (
-          <FilterStyle.MyForm>
-            <FilterStyle.MyLabel>
-              <FilterStyle.Span> Car brand</FilterStyle.Span>
-              <Field name="brand" as="select">
-                <option value="">select a brand</option>
-                {optionBrand()}
-              </Field>
-            </FilterStyle.MyLabel>
-            <FormControl sx={{ m: 1, minWidth: 120 }}>
-              <InputLabel id="demo-simple-select-helper-label">Age</InputLabel>
-              <Select
-                labelId="demo-simple-select-helper-label"
-                id="demo-simple-select-helper"
-                value={age}
-                label="Age"
-                onChange={handleChange}
-              >
-                <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>
-              </Select>
-              <FormHelperText>Price/ 1 hour</FormHelperText>
-            </FormControl>
-            <FilterStyle.Button type="submit">Search</FilterStyle.Button>
-          </FilterStyle.MyForm>
-        )}
+        {props => {
+          return (
+            <FilterStyle.MyForm>
+              <FilterStyle.MyLabel>
+                <FilterStyle.Span> Car brand</FilterStyle.Span>
+                <FilterStyle.MySelect $width="224px" name="price" as="select">
+                  <option value="">Select a brand</option>
+                  {optionBrand()}
+                </FilterStyle.MySelect>
+              </FilterStyle.MyLabel>
+              <FilterStyle.MyLabel>
+                <FilterStyle.Span> Price/ 1 hour</FilterStyle.Span>
+                <FilterStyle.MySelect $width="125px" name="price" as="select">
+                  <option value="">To $</option>
+                  {optionPrice()}
+                </FilterStyle.MySelect>
+              </FilterStyle.MyLabel>
+              <FilterStyle.MyLabel>
+                <Field type="number" name="from" placeholder="From"></Field>
+                <Field type="number" name="to" placeholder="To"></Field>
+              </FilterStyle.MyLabel>
+
+              <FilterStyle.Button type="submit">Search</FilterStyle.Button>
+            </FilterStyle.MyForm>
+          );
+        }}
       </Formik>
     </div>
   );
