@@ -7,10 +7,11 @@ const carSlice = createSlice({
     carsList: [],
     favoriteList: [],
     filters: {
-      priceHour: 0,
-      carMileage: {
-        from: 0,
-        to: 0,
+      brand: '',
+      price: '',
+      mileage: {
+        from: '',
+        to: '',
       },
     },
     error: null,
@@ -25,9 +26,15 @@ const carSlice = createSlice({
       // тут в payload має прилітати обʼєкт однієї машини
       state.favoriteList = [...state.favoriteList, action.payload];
     },
+    // тут в payload має прилітати ID однієї машини
+    removeFavoriteCar(state, action) {
+      state.favoriteList = state.favoriteList.filter(
+        item => item.id !== action.payload
+      );
+    },
   },
   extraReducers: builder => {
-    builder // cars/getCars/pending
+    builder
       .addCase(getCars.pending, (state, a) => {
         state.isLoading = true;
       })
@@ -43,4 +50,5 @@ const carSlice = createSlice({
   },
 });
 export const carsReduser = carSlice.reducer;
-export const { filtersCars, addFavoriteCars } = carSlice.actions;
+export const { filtersCars, addFavoriteCars, removeFavoriteCar } =
+  carSlice.actions;

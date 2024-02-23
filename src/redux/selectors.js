@@ -1,30 +1,30 @@
 // import { createSelector } from '@reduxjs/toolkit';
 // import { useSelector } from 'react-redux';
 
-// const filterBrand = [
-//   'Buick',
-//   'Volvo',
-//   'HUMMER',
-//   'Subaru',
-//   'Mitsubishi',
-//   'Nissan',
-//   'Lincoln',
-//   'GMC',
-//   'Hyundai',
-//   'MINI',
-//   'Bentley',
-//   'Mercedes-Benz',
-//   'Aston Martin',
-//   'Pontiac',
-//   'Lamborghini',
-//   'Audi',
-//   'BMW',
-//   'Chevrolet',
-//   'Mercedes-Benz',
-//   'Chrysler',
-//   'Kia',
-//   'Land',
-// ];
+export const filterBrand = [
+  'Buick',
+  'Volvo',
+  'HUMMER',
+  'Subaru',
+  'Mitsubishi',
+  'Nissan',
+  'Lincoln',
+  'GMC',
+  'Hyundai',
+  'MINI',
+  'Bentley',
+  'Mercedes-Benz',
+  'Aston Martin',
+  'Pontiac',
+  'Lamborghini',
+  'Audi',
+  'BMW',
+  'Chevrolet',
+  'Mercedes-Benz',
+  'Chrysler',
+  'Kia',
+  'Land',
+];
 export const selectCars = state => state.cars.carsList;
 export const selectFilters = state => state.cars.filters;
 export const selectFavoriteCars = state => state.cars.favoriteList;

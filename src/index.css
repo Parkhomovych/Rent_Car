@@ -15,7 +15,9 @@ img {
   max-width: 100%;
   height: auto;
 }
-
+a {
+  text-decoration: none;
+}
 button {
   display: flex;
   align-items: center;
@@ -48,15 +50,14 @@ button {
     padding-right: 32px;
   }
 }
+@media screen and (min-width: 1200px) {
+  .container {
+    max-width: 1200px;
+  }
+}
 
 @media screen and (min-width: 1440px) {
   .container {
     max-width: 1440px;
-    padding-left: 128px;
-    padding-right: 128px;
   }
-}
-
-.active {
-  color: #0b44cd;
 }

@@ -1,5 +1,6 @@
 import { Helmet, HelmetProvider } from 'react-helmet-async';
-
+import { FavoriteList } from 'components/FavoriteList/FavoriteList';
+import { FilterForm } from '../../components/FilterForm/FilterForm'
 const Favorites = () => {
   return (
     <div>
@@ -8,7 +9,8 @@ const Favorites = () => {
           <title>Favorites</title>
         </Helmet>
       </HelmetProvider>
-      <h2>Favorites</h2>
+      <FilterForm />
+      <FavoriteList />
     </div>
   );
 };

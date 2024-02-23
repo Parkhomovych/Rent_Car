@@ -1,21 +1,10 @@
-import { useState } from 'react';
 import Modal from 'react-modal';
-
-import {
-  Img,
-  Item,
-  TitleBox,
-  SpanTitle,
-  TopBox,
-  DescriptBox,
-  SpanDesc,
-  Button,
-  BtnHeard,
-  Heart,
-  FavoriteHeart,
-  DecorSpan,
-} from './Carsitem.styled';
-
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectFavoriteCars } from '../../redux/selectors';
+import { addFavoriteCars, removeFavoriteCar } from '../../redux/CarSlice';
+import * as ItemStyle from './Carsitem.styled';
+import { DescContainer } from './DescContainer';
 const customStyles = {
   content: {
     top: '50%',
@@ -27,29 +16,17 @@ const customStyles = {
   },
 };
 Modal.setAppElement('#root');
-export const CarsItem = ({
-  carInfo: {
-    id,
-    year,
-    make,
-    model,
-    type,
-    img,
-    description,
-    fuelConsumption,
-    engineSize,
-    accessories,
-    functionalities,
-    rentalPrice,
-    rentalCompany,
-    address,
-    rentalConditions,
-    mileage,
-  },
-}) => {
+export const CarsItem = ({ carInfo }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
+  const dispatch = useDispatch();
 
+  const favoriteCar = useSelector(selectFavoriteCars);
+  useEffect(() => {
+    if (favoriteCar.some(i => i.id === carInfo.id)) {
+      setIsFavorite(true);
+    }
+  }, [favoriteCar, carInfo]);
   const OpenModal = () => {
     setIsModalOpen(true);
   };
@@ -58,71 +35,62 @@ export const CarsItem = ({
   };
   const handlerFavorite = () => {
     setIsFavorite(!isFavorite);
+    if (isFavorite) {
+      dispatch(removeFavoriteCar(carInfo.id));
+      return;
+    }
+    dispatch(addFavoriteCars(carInfo));
   };
 
   return (
-    <Item>
-      <TopBox>
-        <BtnHeard onClick={handlerFavorite}>
-          {isFavorite ? <FavoriteHeart /> : <Heart />}
-        </BtnHeard>
-
-        <Img $bgImg={img} width="274" height="268" src={img} alt={make} />
-      </TopBox>
-      <TitleBox>
+    <ItemStyle.Item>
+      <ItemStyle.TopBox>
+        <ItemStyle.BtnHeard onClick={handlerFavorite}>
+          {isFavorite ? <ItemStyle.FavoriteHeart /> : <ItemStyle.Heart />}
+        </ItemStyle.BtnHeard>
+        <ItemStyle.Img
+          loading="lazy"
+          $bgImg={carInfo.img}
+          width="274"
+          height="268"
+          src={carInfo.img}
+          alt={carInfo.make}
+        />
+      </ItemStyle.TopBox>
+      <ItemStyle.TitleBox>
         <div>
           <p>
-            {make} <SpanTitle>{model}</SpanTitle>,{year}
+            {carInfo.make}{' '}
+            <ItemStyle.SpanTitle>{carInfo.model}</ItemStyle.SpanTitle>
+            {', '}
+            {carInfo.year}
           </p>
         </div>
-        <p>{rentalPrice}</p>
-      </TitleBox>
-      <DescriptBox>
-        <SpanDesc>
-          {address}
-          <DecorSpan />
-        </SpanDesc>
-        <SpanDesc>
-          {rentalCompany}
-          <DecorSpan />
-        </SpanDesc>
-        <SpanDesc>
-          {type}
-          <DecorSpan />
-        </SpanDesc>
-        <SpanDesc>
-          {model}
-          <DecorSpan />
-        </SpanDesc>
-        <SpanDesc>
-          {id}
-          <DecorSpan />
-        </SpanDesc>
-        <SpanDesc $after={false}>{accessories[0]}</SpanDesc>
-      </DescriptBox>
-      <Button onClick={OpenModal} type="button">
+        <p>{carInfo.rentalPrice}</p>
+      </ItemStyle.TitleBox>
+      <DescContainer carInfo={carInfo} />
+      <ItemStyle.Button onClick={OpenModal} type="button">
         Learn more
-      </Button>
+      </ItemStyle.Button>
       {isModalOpen && (
-        <div>
-          <Modal
-            isOpen={isModalOpen}
-            onRequestClose={closeModal}
-            style={customStyles}
-            contentLabel="Example Modal"
-          >
-            <button onClick={closeModal}>close</button>
-            <div>I am a modal</div>
-            <form>
-              <input />
-              <button>tab navigation</button>
-              <button>stays</button>
-              <button>inside</button>
-              <button>the modal</button>
-            </form>
-          </Modal>
-        </div>
+        <Modal
+          isOpen={isModalOpen}
+          onRequestClose={closeModal}
+          style={customStyles}
+          contentLabel="Example Modal"
+        >
+          <button onClick={closeModal}>
+            <ItemStyle.CloseBtnModal />
+          </button>
+          <ItemStyle.Img
+            $bgImg={carInfo.img}
+            width="461"
+            height="180"
+            src={carInfo.img}
+            alt={carInfo.make}
+          />
+        </Modal>
       )}
-    </Item>
+    </ItemStyle.Item>
   );
 };

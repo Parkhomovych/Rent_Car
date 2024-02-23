@@ -1,6 +1,6 @@
+import { FilterForm } from '../../components/FilterForm/FilterForm'
 import { CarsList } from '../../components/CarsList/CarsList';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
-
 
 const Catalog = () => {
   return (
@@ -10,8 +10,8 @@ const Catalog = () => {
           <title>Catalog</title>
         </Helmet>
       </HelmetProvider>
-      <h2>Catalog</h2>
-      <CarsList/>
+      <FilterForm />
+      <CarsList />
     </div>
   );
 };
