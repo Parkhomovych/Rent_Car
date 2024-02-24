@@ -1,8 +1,6 @@
 import { Helmet, HelmetProvider } from 'react-helmet-async';
-import styled from 'styled-components';
-const Box = styled.div`
-  background-image: url('https://news.blog.net.ua/media/2023/07/Ukraina-maty-u-Kyievi-muzeynyky-pereymenuiut-monument-Batkivshchyna-maty.gif');
-`;
+
+
 const Home = () => {
   return (
     <div>
