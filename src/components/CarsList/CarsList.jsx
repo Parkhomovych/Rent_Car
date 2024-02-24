@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { selectCars } from '../../redux/selectors';
+import { selectCars, selectFilteredCars, selectIsLoading } from '../../redux/selectors';
 import { CarsItem } from 'components/CarsItem/CarsItem';
 import styled from 'styled-components';
 
@@ -12,15 +12,19 @@ const List = styled.ul`
 `;
 
 export const CarsList = () => {
+  const load = useSelector(selectIsLoading)
   const cars = useSelector(selectCars);
+  const cars1 = useSelector(selectFilteredCars);
 
   return (
     <>
-      <List>
-        {cars.length !== 0
-          ? cars?.map(car => <CarsItem key={car.id} carInfo={car} />)
-          : 'loadCars'}
-      </List>
+      {load ? 'Loading' : (
+        <List>
+          {cars.length !== 0
+            ? cars?.map(car => <CarsItem key={car.id} carInfo={car} />)
+            : 'notFound'}
+        </List>
+      )}
     </>
   );
 };

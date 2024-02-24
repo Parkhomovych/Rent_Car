@@ -15,3 +15,4 @@ export const getCars = createAsyncThunk(
     }
   }
 );
+// getCars(`p=${2}`)

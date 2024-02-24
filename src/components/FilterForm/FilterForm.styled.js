@@ -1,17 +1,29 @@
 import styled from 'styled-components';
-import { Form, Field } from 'formik';
 
-export const MyForm = styled(Form)`
+export const Form = styled.form`
   padding: 50px 0;
   display: flex;
   align-items: center;
   justify-content: center;
   column-gap: 18px;
 `;
-export const MyLabel = styled.label`
+export const Box = styled.div`
+  display: flex;
+`;
+export const Label = styled.label`
   position: relative;
 `;
-export const MySelect = styled(Field)`
+export const Input = styled.input`
+  height: 48px;
+  padding: 8px;
+  border: none;
+  background: #f7f7fb;
+
+  &:focus {
+    outline: none;
+  }
+`;
+export const Select = styled.select`
   width: ${p => p.$width};
   height: 48px;
   padding: 8px;
@@ -19,6 +31,10 @@ export const MySelect = styled(Field)`
   border-radius: 14px;
   border: none;
   background: #f7f7fb;
+
+  &:focus {
+    outline: none;
+  }
 `;
 export const Span = styled.span`
   position: absolute;

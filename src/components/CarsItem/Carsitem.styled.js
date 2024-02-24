@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { FaRegHeart } from 'react-icons/fa';
 import { FaHeart } from 'react-icons/fa';
-import { IoMdClose } from 'react-icons/io';
 
 export const Item = styled.li`
   width: 274px;
@@ -82,4 +81,3 @@ export const DecorSpan = styled.span`
   background-color: rgba(18, 20, 23, 0.1);
 `;
 
-export const CloseBtnModal = styled(IoMdClose)``;

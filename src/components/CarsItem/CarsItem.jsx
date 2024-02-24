@@ -1,21 +1,11 @@
-import Modal from 'react-modal';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectFavoriteCars } from '../../redux/selectors';
 import { addFavoriteCars, removeFavoriteCar } from '../../redux/CarSlice';
 import * as ItemStyle from './Carsitem.styled';
 import { DescContainer } from './DescContainer';
-const customStyles = {
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-  },
-};
-Modal.setAppElement('#root');
+import { ModalCar } from './ModalCar/ModalCar';
+
 export const CarsItem = ({ carInfo }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
@@ -27,6 +17,7 @@ export const CarsItem = ({ carInfo }) => {
       setIsFavorite(true);
     }
   }, [favoriteCar, carInfo]);
+
   const OpenModal = () => {
     setIsModalOpen(true);
   };
@@ -52,7 +43,7 @@ export const CarsItem = ({ carInfo }) => {
           loading="lazy"
           $bgImg={carInfo.img}
           width="274"
-          height="268"
+          height="208"
           src={carInfo.img}
           alt={carInfo.make}
         />
@@ -73,23 +64,11 @@ export const CarsItem = ({ carInfo }) => {
         Learn more
       </ItemStyle.Button>
       {isModalOpen && (
-        <Modal
-          isOpen={isModalOpen}
-          onRequestClose={closeModal}
-          style={customStyles}
-          contentLabel="Example Modal"
-        >
-          <button onClick={closeModal}>
-            <ItemStyle.CloseBtnModal />
-          </button>
-          <ItemStyle.Img
-            $bgImg={carInfo.img}
-            width="461"
-            height="180"
-            src={carInfo.img}
-            alt={carInfo.make}
-          />
-        </Modal>
+        <ModalCar
+          isModalOpen={isModalOpen}
+          closeModal={closeModal}
+          carInfo={carInfo}
+        />
       )}
     </ItemStyle.Item>
   );

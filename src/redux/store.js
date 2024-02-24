@@ -11,6 +11,7 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
+
 const persistConfig = {
   key: 'cars',
   storage,
@@ -20,7 +21,6 @@ const persistConfig = {
 export const store = configureStore({
   reducer: {
     cars: persistReducer(persistConfig, carsReduser),
-    
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
