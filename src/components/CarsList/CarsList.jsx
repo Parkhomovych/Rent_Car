@@ -15,7 +15,6 @@ export const CarsList = () => {
   const load = useSelector(selectIsLoading)
   const cars = useSelector(selectCars);
 
-
   return (
     <>
       {load ? 'Loading' : (

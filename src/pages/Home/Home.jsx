@@ -1,6 +1,5 @@
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 
-
 const Home = () => {
   return (
     <div>

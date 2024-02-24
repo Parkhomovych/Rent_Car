@@ -35,19 +35,19 @@ export const selectFilteredCars = createSelector(
   [selectCars, selectFilters],
   (cars, filters) => {
     
-    const filterCarsBrand = cars.filter(item => item.make === filters.brand);
+    // const filterCarsBrand = cars.filter(item => item.make === filters.brand);
 
-    const filterCarsPrice = cars.filter(item => item.make === filters.price);
+    // const filterCarsPrice = cars.filter(item => item.make === filters.price);
 
-    const filterCarsMileage = cars.filter(item => item.make === filters.from);
+    // const filterCarsMileage = cars.filter(item => item.make === filters.from);
 
-    const allFilters = [
-      ...filterCarsBrand,
-      ...filterCarsPrice,
-      ...filterCarsMileage,
-    ];
-    let res = allFilters.length !== 0 ? allFilters : cars;
+    // const allFilters = [
+    //   ...filterCarsBrand,
+    //   ...filterCarsPrice,
+    //   ...filterCarsMileage,
+    // ];
+    // let res = allFilters.length !== 0 ? allFilters : cars;
 
-    return res;
+    // return res;
   }
 );
