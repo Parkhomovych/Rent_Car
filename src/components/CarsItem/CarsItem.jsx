@@ -2,10 +2,39 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectFavoriteCars } from '../../redux/selectors';
 import { addFavoriteCars, removeFavoriteCar } from '../../redux/CarSlice';
-import * as ItemStyle from './Carsitem.styled';
-import { DescContainer } from './DescContainer';
-import { ModalCar } from './ModalCar/ModalCar';
+import * as Styled from './Carsitem.styled';
+import { DescContainer } from './InfoCar/DescContainer';
 
+import Modal from 'react-modal';
+import { FuncAndAcces } from './InfoCar/FuncAndAcces';
+import { RentalInfo } from './InfoCar/RentalInfo';
+Modal.setAppElement('#root');
+Modal.defaultStyles = {
+  overlay: {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(0, 0, 0, 0.75)',
+  },
+  content: {
+    maxWidth: '541px',
+    maxHeight: '752px',
+    padding: '40px',
+
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%,-50%)',
+
+    background: '#fff',
+    borderRadius: '24px',
+    overflow: 'hidden',
+    WebkitOverflowScrolling: 'touch',
+    outline: 'none',
+  },
+};
 export const CarsItem = ({ carInfo }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
@@ -20,9 +49,11 @@ export const CarsItem = ({ carInfo }) => {
 
   const OpenModal = () => {
     setIsModalOpen(true);
+    document.body.style.overflow = 'hidden';
   };
   const closeModal = () => {
     setIsModalOpen(false);
+    document.body.style.overflow = 'auto';
   };
   const handlerFavorite = () => {
     setIsFavorite(!isFavorite);
@@ -34,12 +65,12 @@ export const CarsItem = ({ carInfo }) => {
   };
 
   return (
-    <ItemStyle.Item>
-      <ItemStyle.TopBox>
-        <ItemStyle.BtnHeard onClick={handlerFavorite}>
-          {isFavorite ? <ItemStyle.FavoriteHeart /> : <ItemStyle.Heart />}
-        </ItemStyle.BtnHeard>
-        <ItemStyle.Img
+    <Styled.Item>
+      <Styled.TopBox>
+        <Styled.BtnHeard onClick={handlerFavorite}>
+          {isFavorite ? <Styled.FavoriteHeart /> : <Styled.Heart />}
+        </Styled.BtnHeard>
+        <Styled.Img
           loading="lazy"
           $bgImg={carInfo.img}
           width="274"
@@ -47,29 +78,54 @@ export const CarsItem = ({ carInfo }) => {
           src={carInfo.img}
           alt={carInfo.make}
         />
-      </ItemStyle.TopBox>
-      <ItemStyle.TitleBox>
+      </Styled.TopBox>
+      <Styled.TitleBox>
         <div>
           <p>
-            {carInfo.make}{' '}
-            <ItemStyle.SpanTitle>{carInfo.model}</ItemStyle.SpanTitle>
+            {carInfo.make} <Styled.SpanTitle>{carInfo.model}</Styled.SpanTitle>
             {', '}
             {carInfo.year}
           </p>
         </div>
         <p>{carInfo.rentalPrice}</p>
-      </ItemStyle.TitleBox>
-      <DescContainer carInfo={carInfo} />
-      <ItemStyle.Button onClick={OpenModal} type="button">
+      </Styled.TitleBox>
+      <DescContainer isModalInfo={false} carInfo={carInfo} />
+      <Styled.Button onClick={OpenModal} type="button">
         Learn more
-      </ItemStyle.Button>
+      </Styled.Button>
+
       {isModalOpen && (
-        <ModalCar
-          isModalOpen={isModalOpen}
-          closeModal={closeModal}
-          carInfo={carInfo}
-        />
+        <Modal isOpen={isModalOpen} onRequestClose={closeModal}>
+          <Styled.BtnClose type="button" onClick={closeModal}>
+            <Styled.SvgClose />
+          </Styled.BtnClose>
+          <Styled.ImgModal
+            width="461"
+            height="180"
+            src={carInfo.img}
+            alt={carInfo.make}
+          />
+          <Styled.TitleBox>
+            <div>
+              <p>
+                {carInfo.make}{' '}
+                <Styled.SpanTitle>
+                  {carInfo.model}
+                  {', '}
+                </Styled.SpanTitle>
+                {carInfo.year}
+              </p>
+            </div>
+          </Styled.TitleBox>
+          <DescContainer isModalInfo={true} carInfo={carInfo} />
+          <Styled.Description>{carInfo.description}</Styled.Description>
+          <Styled.SubTitle>Accessories and functionalities:</Styled.SubTitle>
+          <FuncAndAcces carInfo={carInfo} />
+          <Styled.RentalTitle>Rental Conditions: </Styled.RentalTitle>
+          <RentalInfo carInfo={carInfo} />
+          <Styled.RentalBtn>Rental car</Styled.RentalBtn>
+        </Modal>
       )}
-    </ItemStyle.Item>
+    </Styled.Item>
   );
 };

@@ -8,7 +8,8 @@ html {
   scroll-behavior: smooth;
 }
 ul,
-ol {
+ol,
+li {
   list-style: none;
 }
 img {
@@ -29,6 +30,7 @@ button {
 }
 a,
 p,
+span,
 h1,
 h2,
 h3,
@@ -61,4 +63,16 @@ button {
   .container {
     max-width: 1440px;
   }
+}
+
+.ReactModal__Overlay {
+  opacity: 0;
+  transition: opacity 250ms ease-in-out;
+}
+.ReactModal__Overlay--after-open {
+  opacity: 1;
+}
+
+.ReactModal__Overlay--before-close {
+  opacity: 0;
 }

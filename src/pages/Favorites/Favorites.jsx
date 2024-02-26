@@ -3,7 +3,7 @@ import { FavoriteList } from 'components/FavoriteList/FavoriteList';
 import { FilterForm } from '../../components/FilterForm/FilterForm'
 const Favorites = () => {
   return (
-    <div>
+    <section>
       <HelmetProvider>
         <Helmet>
           <title>Favorites</title>
@@ -11,7 +11,7 @@ const Favorites = () => {
       </HelmetProvider>
       <FilterForm />
       <FavoriteList />
-    </div>
+    </section>
   );
 };
 

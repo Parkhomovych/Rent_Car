@@ -2,7 +2,7 @@ import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 const Home = () => {
   return (
-    <div>
+    <section>
       <HelmetProvider>
         <Helmet>
           <title>Home</title>
@@ -14,7 +14,7 @@ const Home = () => {
         src="https://www.nissanusa.com/content/dam/Nissan/us/rental-cars/nissan-rental-car-lineup-hero_v2.jpg.ximg.l_full_m.smart.jpg"
         alt="many cars"
       />
-    </div>
+    </section>
   );
 };
 

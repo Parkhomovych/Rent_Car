@@ -1,17 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getCars } from './operations';
+import { loadMoreCars, getCars } from './operations';
 
 const carSlice = createSlice({
   name: 'cars',
   initialState: {
     carsList: [],
     favoriteList: [],
+    btnMore: true,
     filters: {
       brand: '',
       price: '',
       from: '',
       to: '',
     },
+
     error: null,
     isLoading: false,
   },
@@ -39,9 +41,20 @@ const carSlice = createSlice({
       .addCase(getCars.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
+        if (action.payload.length === 0) state.btnMore = false;
         state.carsList = [...action.payload];
       })
       .addCase(getCars.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+      .addCase(loadMoreCars.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        if (action.payload.length === 0) state.btnMore = false;
+        state.carsList = [...state.carsList, ...action.payload];
+      })
+      .addCase(loadMoreCars.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       });

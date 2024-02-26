@@ -1,5 +1,23 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+
+const HeadMessage = styled.h2`
+  margin-bottom: 32px;
+  padding: 14px;
+
+  text-align: center;
+`;
+const RedMessage = styled.span`
+  color: red;
+  font-size: 24px;
+`;
+
+const Paragraph = styled.p`
+  padding: 14px;
+  margin-bottom: 32px;
+  text-align: center;
+`;
 const NotFound = () => {
   const [time, setTime] = useState(5);
   const navigate = useNavigate();
@@ -19,18 +37,16 @@ const NotFound = () => {
   }, [navigate]);
 
   return (
-    <>
-      <h2
-        style={{ textAlign: 'center', padding: '14px', marginBottom: '32px' }}
-      >
-        The page you are looking for was not found
-        <span style={{ color: 'red' }}> Not Found </span>
-      </h2>
-      <p style={{ textAlign: 'center', padding: '14px', marginBottom: '32px' }}>
-        You will be redirected to the home page in
-        <span style={{ color: 'red', fontSize: '24px' }}> {time}</span> seconds
-      </p>
-    </>
+    <section>
+      <HeadMessage>
+        The page you are looking for was not found{' '}
+        <RedMessage>Not Found </RedMessage>
+      </HeadMessage>
+      <Paragraph>
+        You will be redirected to the home page in{' '}
+        <RedMessage>{time}</RedMessage> seconds
+      </Paragraph>
+    </section>
   );
 };
 

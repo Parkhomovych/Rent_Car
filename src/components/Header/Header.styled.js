@@ -18,7 +18,12 @@ export const MyLink = styled(NavLink)`
   line-height: 150%;
 
   color: #000000;
+
+  transition: color 250ms linear;
   &.active {
+    color: #0b44cd;
+  }
+  &:hover {
     color: #0b44cd;
   }
   &.active::after {

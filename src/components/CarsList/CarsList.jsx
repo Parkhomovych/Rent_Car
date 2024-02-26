@@ -1,28 +1,27 @@
-import { useSelector } from 'react-redux';
-import { selectCars, selectIsLoading } from '../../redux/selectors';
+import { selectBtnMore, selectCars } from '../../redux/selectors';
+import { useDispatch, useSelector } from 'react-redux';
+import { loadMoreCars } from '../../redux/operations';
 import { CarsItem } from 'components/CarsItem/CarsItem';
-import styled from 'styled-components';
-
-const List = styled.ul`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  row-gap: 50px;
-  column-gap: 28px;
-`;
+import * as Styled from './CarsListStyle';
+import { useState } from 'react';
 
 export const CarsList = () => {
-  const load = useSelector(selectIsLoading)
+  const [page, setPage] = useState(1);
+  const dispatch = useDispatch();
+  const serchMoreCars = () => {
+    dispatch(loadMoreCars(page + 1));
+    setPage(pS => pS + 1);
+  };
+  const showBtnMore = useSelector(selectBtnMore);
   const cars = useSelector(selectCars);
-
   return (
     <>
-      {load ? 'Loading' : (
-        <List>
-          {cars.length !== 0
-            ? cars?.map(car => <CarsItem key={car.id} carInfo={car} />)
-            : 'notFound'}
-        </List>
+      <Styled.List>
+        {cars.length !== 0 &&
+          cars?.map(car => <CarsItem key={car.id} carInfo={car} />)}
+      </Styled.List>
+      {showBtnMore && (
+        <Styled.LoadMore onClick={serchMoreCars}>Load More</Styled.LoadMore>
       )}
     </>
   );
