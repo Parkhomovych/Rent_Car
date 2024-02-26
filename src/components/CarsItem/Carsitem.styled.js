@@ -115,7 +115,7 @@ export const RentalTitle = styled.h3`
   line-height: 143%;
   color: #121417;
 `;
-export const RentalBtn = styled.button`
+export const RentalLink = styled.a`
   padding: 12px 50px;
   width: 168px;
   height: 44px;

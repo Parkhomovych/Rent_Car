@@ -10,12 +10,11 @@ const Favorites = lazy(() => import('../pages/Favorites/Favorites'));
 const NotFound = lazy(() => import('../pages/NotFound/NotFound'));
 
 export const App = () => {
-  const [rendered, setRendered] = useState(false);
+  const [rendered, setRendered] = useState(true);
   const dispatch = useDispatch();
-
   useEffect(() => {
-    if (!rendered) {
-      setRendered(true);
+    if (rendered) {
+      setRendered(false);
       return;
     }
     dispatch(getCars());

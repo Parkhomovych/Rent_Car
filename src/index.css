@@ -49,25 +49,23 @@ button {
 @media screen and (min-width: 768px) {
   .container {
     max-width: 768px;
-    padding-left: 32px;
-    padding-right: 32px;
   }
 }
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1050px) {
   .container {
     max-width: 1200px;
   }
 }
 
-@media screen and (min-width: 1440px) {
+@media screen and (min-width: 1400px) {
   .container {
-    max-width: 1440px;
+    max-width: 1400px;
   }
 }
 
 .ReactModal__Overlay {
   opacity: 0;
-  transition: opacity 250ms ease-in-out;
+  transition: opacity 500ms ease-in-out;
 }
 .ReactModal__Overlay--after-open {
   opacity: 1;

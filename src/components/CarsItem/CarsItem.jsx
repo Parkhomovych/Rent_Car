@@ -4,10 +4,10 @@ import { selectFavoriteCars } from '../../redux/selectors';
 import { addFavoriteCars, removeFavoriteCar } from '../../redux/CarSlice';
 import * as Styled from './Carsitem.styled';
 import { DescContainer } from './InfoCar/DescContainer';
-
-import Modal from 'react-modal';
 import { FuncAndAcces } from './InfoCar/FuncAndAcces';
 import { RentalInfo } from './InfoCar/RentalInfo';
+
+import Modal from 'react-modal';
 Modal.setAppElement('#root');
 Modal.defaultStyles = {
   overlay: {
@@ -71,7 +71,6 @@ export const CarsItem = ({ carInfo }) => {
         </Styled.BtnHeard>
         <Styled.Img
           loading="lazy"
-          $bgImg={carInfo.img}
           width="274"
           height="208"
           src={carInfo.img}
@@ -93,38 +92,42 @@ export const CarsItem = ({ carInfo }) => {
         Learn more
       </Styled.Button>
 
-      {isModalOpen && (
-        <Modal isOpen={isModalOpen} onRequestClose={closeModal}>
-          <Styled.BtnClose type="button" onClick={closeModal}>
-            <Styled.SvgClose />
-          </Styled.BtnClose>
-          <Styled.ImgModal
-            width="461"
-            height="180"
-            src={carInfo.img}
-            alt={carInfo.make}
-          />
-          <Styled.TitleBox>
-            <div>
-              <p>
-                {carInfo.make}{' '}
-                <Styled.SpanTitle>
-                  {carInfo.model}
-                  {', '}
-                </Styled.SpanTitle>
-                {carInfo.year}
-              </p>
-            </div>
-          </Styled.TitleBox>
-          <DescContainer isModalInfo={true} carInfo={carInfo} />
-          <Styled.Description>{carInfo.description}</Styled.Description>
-          <Styled.SubTitle>Accessories and functionalities:</Styled.SubTitle>
-          <FuncAndAcces carInfo={carInfo} />
-          <Styled.RentalTitle>Rental Conditions: </Styled.RentalTitle>
-          <RentalInfo carInfo={carInfo} />
-          <Styled.RentalBtn>Rental car</Styled.RentalBtn>
-        </Modal>
-      )}
+      <Modal
+        isOpen={isModalOpen}
+        onRequestClose={closeModal}
+        closeTimeoutMS={500}
+      >
+        <Styled.BtnClose type="button" onClick={closeModal}>
+          <Styled.SvgClose />
+        </Styled.BtnClose>
+        <Styled.ImgModal
+          width="461"
+          height="180"
+          src={carInfo.img}
+          alt={carInfo.make}
+        />
+        <Styled.TitleBox>
+          <div>
+            <p>
+              {carInfo.make}{' '}
+              <Styled.SpanTitle>
+                {carInfo.model}
+                {', '}
+              </Styled.SpanTitle>
+              {carInfo.year}
+            </p>
+          </div>
+        </Styled.TitleBox>
+        <DescContainer isModalInfo={true} carInfo={carInfo} />
+        <Styled.Description>{carInfo.description}</Styled.Description>
+        <Styled.SubTitle>Accessories and functionalities:</Styled.SubTitle>
+        <FuncAndAcces carInfo={carInfo} />
+        <Styled.RentalTitle>Rental Conditions: </Styled.RentalTitle>
+        <RentalInfo carInfo={carInfo} />
+        <Styled.RentalLink href="tel:+380730000000">
+          Rental car
+        </Styled.RentalLink>
+      </Modal>
     </Styled.Item>
   );
 };

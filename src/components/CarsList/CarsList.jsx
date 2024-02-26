@@ -14,6 +14,7 @@ export const CarsList = () => {
   };
 
   const cars = useSelector(selectCars);
+
   return (
     <>
       <Styled.List>
