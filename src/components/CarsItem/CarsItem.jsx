@@ -20,7 +20,6 @@ Modal.defaultStyles = {
   },
   content: {
     maxWidth: '541px',
-    maxHeight: '752px',
     padding: '40px',
 
     position: 'absolute',

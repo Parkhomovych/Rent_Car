@@ -7,7 +7,7 @@ Modal.setAppElement('#root');
 
 export const Item = styled.li`
   width: 274px;
-  height: 366px;
+  height: 380px;
   display: flex;
   flex-direction: column;
 `;

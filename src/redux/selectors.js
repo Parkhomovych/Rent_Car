@@ -30,7 +30,7 @@ export const selectFilters = state => state.cars.filters;
 export const selectFavoriteCars = state => state.cars.favoriteList;
 export const selectIsLoading = state => state.cars.isLoading;
 export const selectError = state => state.cars.error;
-export const selectBtnMore = state => state.cars.btnMore;
+
 export const selectFilteredCars = createSelector(
   [selectCars, selectFilters],
   (cars, filters) => {

@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const DescriptBox = styled.div`
   display: flex;
   flex-wrap: wrap;
-  max-width: 343px;
 `;
 export const SpanDesc = styled.span`
   position: relative;
