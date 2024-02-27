@@ -1,6 +1,5 @@
-import { lazy, useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { getCars } from '../redux/operations';
+import { lazy } from 'react';
+
 import { Routes, Route } from 'react-router-dom';
 import { Layout } from './Layout/Layout';
 
@@ -10,16 +9,6 @@ const Favorites = lazy(() => import('../pages/Favorites/Favorites'));
 const NotFound = lazy(() => import('../pages/NotFound/NotFound'));
 
 export const App = () => {
-  const [rendered, setRendered] = useState(true);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    if (rendered) {
-      setRendered(false);
-      return;
-    }
-    dispatch(getCars());
-  }, [dispatch, rendered]);
-
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
