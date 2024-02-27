@@ -95,7 +95,7 @@ export const CarsItem = ({ carInfo }) => {
       <Modal
         isOpen={isModalOpen}
         onRequestClose={closeModal}
-        closeTimeoutMS={500}
+        closeTimeoutMS={250}
       >
         <Styled.BtnClose type="button" onClick={closeModal}>
           <Styled.SvgClose />
@@ -129,5 +129,5 @@ export const CarsItem = ({ carInfo }) => {
         </Styled.RentalLink>
       </Modal>
     </Styled.Item>
-  );
+  ); 
 };

@@ -30,10 +30,16 @@ export const selectFilters = state => state.cars.filters;
 export const selectFavoriteCars = state => state.cars.favoriteList;
 export const selectIsLoading = state => state.cars.isLoading;
 export const selectError = state => state.cars.error;
-
+export const selectShowLoadMore = state => state.cars.showLoadMore;
 export const selectFilteredCars = createSelector(
   [selectCars, selectFilters],
   (cars, filters) => {
-    //help
+    console.log(filters);
+    const result = cars.filter(i => {
+      if (i.make.toLowerCase()) {
+        
+      }
+    });
+    return cars;
   }
 );

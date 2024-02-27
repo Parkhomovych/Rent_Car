@@ -1,49 +1,76 @@
 import {
   Form,
   Label,
-  Select,
-  Input,
+  FilterInput,
+  ArrowDown,
+  ArrowUp,
   Span,
-  Button,
-  Box,
+  SubmitBtn,
+  BoxList,
+  Option,
+  ValuePrice,
 } from './FilterForm.styled';
-import { filterBrand, selectFilters } from '../../redux/selectors';
-import { useDispatch, useSelector } from 'react-redux';
+
+import { useDispatch } from 'react-redux';
 import { filtersCars } from '../../redux/CarSlice';
+import { filterBrand } from '../../redux/selectors';
+import { useState } from 'react';
+import { nanoid } from 'nanoid';
 
 export const FilterForm = () => {
-  const locValForm = useSelector(selectFilters);
+  const [isShowBrand, setisShowBrand] = useState(false);
+  const [brandValue, setBrandValue] = useState('');
+
+  const [isFocusPrice, setIsFocusPrice] = useState(false);
+  const [priceValue, setPriceValue] = useState('');
+
   const dispatch = useDispatch();
 
-  const optionBrand = () => {
-    const option = [];
-    for (let i = 0; i < filterBrand.length; i += 1) {
-      option.push(
-        <option key={i} value={filterBrand[i]}>
-          {filterBrand[i]}
-        </option>
-      );
+  const handleIsShowBrand = () => {
+    setisShowBrand(pS => !pS);
+  };
+  const handleValueBrand = e => {
+    setisShowBrand(true);
+    setBrandValue(e.target.value);
+    if ((e.target.nodeName !== 'UL') & (e.target.nodeName !== 'INPUT')) {
+      setBrandValue(e.target.textContent);
     }
-    return option;
+  };
+
+  const handleIsShowPrice = () => {
+    setIsFocusPrice(pS => !pS);
+  };
+  const handleTextContentPrice = e => {
+    if (e.target.nodeName !== 'UL') {
+      setPriceValue(e.target.textContent);
+    }
   };
   const optionPrice = () => {
-    const option = [];
+    const item = [];
     for (let i = 30; i <= 500; i += 10) {
-      option.push(
-        <option key={i} value={i}>
-          {i}
-        </option>
+      if (Number(priceValue) === i) {
+        item.push(
+          <li key={nanoid(10)}>
+            <Option $active={true}>{i}</Option>
+          </li>
+        );
+        continue;
+      }
+      item.push(
+        <li key={nanoid(10)}>
+          <Option $active={false}>{i}</Option>
+        </li>
       );
     }
-    return option;
+    return item;
   };
   const subForm = e => {
     e.preventDefault();
     const form = e.target;
-    const { brand, price, from, to } = form.elements;
+    const { from, to } = form.elements;
     const data = {
-      brand: brand.value,
-      price: price.value,
+      brand: brandValue,
+      price: priceValue,
       from: from.value,
       to: to.value,
     };
@@ -52,55 +79,89 @@ export const FilterForm = () => {
   };
   return (
     <div>
-      <Form onSubmit={e => subForm(e)}>
+      <Form onSubmit={subForm}>
         <Label>
+          {isShowBrand ? <ArrowDown /> : <ArrowUp />}
           <Span> Car brand</Span>
-          <Select
-            defaultValue={locValForm.brand}
-            placeholder="Select a brand"
-            $width="224px"
+          <FilterInput
+            type="text"
             name="brand"
-          >
-            <option value=""></option>
-            {optionBrand()}
-          </Select>
+            placeholder="Enter the text"
+            value={brandValue}
+            $width="224px"
+            onClick={handleIsShowBrand}
+            onChange={handleValueBrand}
+          />
+          {isShowBrand && (
+            <BoxList
+              onClick={e => handleValueBrand(e)}
+              $width="224px"
+              $height="188px"
+            >
+              {filterBrand.map((i, idx) => {
+                if (
+                  i.toLocaleLowerCase() ===
+                  brandValue.toLocaleLowerCase().trim()
+                ) {
+                  return (
+                    <li key={idx}>
+                      <Option $active={true}>{i}</Option>
+                    </li>
+                  );
+                }
+                return (
+                  <li key={idx}>
+                    <Option $active={false}>{i}</Option>
+                  </li>
+                );
+              })}
+            </BoxList>
+          )}
         </Label>
         <Label>
+          {isFocusPrice ? <ArrowUp /> : <ArrowDown />}
           <Span> Price/ 1 hour</Span>
-
-          <Select
-            defaultValue={locValForm.price}
-            $width="125px"
+          <FilterInput
+            type="text"
             name="price"
-            as="select"
-          >
-            <option value="">To $</option>
-            {optionPrice()}
-          </Select>
+            $width="125px"
+            $cursor="pointer"
+            onClick={handleIsShowPrice}
+            readOnly
+          ></FilterInput>
+          <ValuePrice>{`To ${priceValue}$`}</ValuePrice>
+          {isFocusPrice && (
+            <BoxList
+              onClick={e => handleTextContentPrice(e)}
+              $width="125px"
+              $height="188px"
+            >
+              {optionPrice()}
+            </BoxList>
+          )}
         </Label>
-
-        <Box>
-          <Input
+        <Label>
+          <Span>Car mileage / km</Span>
+          <FilterInput
             style={{
-              width: '160px',
               borderRadius: '14px 0 0 14px',
               borderRight: '1px solid rgba(138, 138, 137, 0.2)',
             }}
-            defaultValue={locValForm.from}
             type="number"
             name="from"
             placeholder="From"
-          ></Input>
-          <Input
-            style={{ borderRadius: '0 14px 14px 0', width: '160px' }}
-            defaultValue={locValForm.to}
+            $width="160px"
+          ></FilterInput>
+          <FilterInput
+            style={{ borderRadius: '0 14px 14px 0' }}
             type="number"
             name="to"
             placeholder="To"
-          ></Input>
-        </Box>
+            $width="160px"
+          ></FilterInput>
+        </Label>
 
-        <Button type="submit">Search</Button>
+        <SubmitBtn type="submit">Search</SubmitBtn>
       </Form>
     </div>
   );

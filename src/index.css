@@ -7,6 +7,19 @@
 html {
   scroll-behavior: smooth;
 }
+a,
+p,
+h1,
+h2,
+h3,
+span,
+button,
+input {
+  font-family: 'Monrope', sans-serif;
+}
+a {
+  text-decoration: none;
+}
 ul,
 ol,
 li {
@@ -17,9 +30,7 @@ img {
   max-width: 100%;
   height: auto;
 }
-a {
-  text-decoration: none;
-}
+
 button {
   display: flex;
   align-items: center;
@@ -28,16 +39,7 @@ button {
   cursor: pointer;
   border: none;
 }
-a,
-p,
-span,
-h1,
-h2,
-h3,
-span,
-button {
-  font-family: 'Monrope', sans-serif;
-}
+
 .container {
   max-width: 375px;
   padding-left: 20px;
@@ -65,7 +67,7 @@ button {
 
 .ReactModal__Overlay {
   opacity: 0;
-  transition: opacity 500ms ease-in-out;
+  transition: opacity 250ms ease-in-out;
 }
 .ReactModal__Overlay--after-open {
   opacity: 1;
@@ -73,4 +75,28 @@ button {
 
 .ReactModal__Overlay--before-close {
   opacity: 0;
+}
+::-webkit-calendar-picker-indicator {
+  background-color: none;
+  color: transparent;
+}
+input::-webkit-datetime-edit-fields-wrapper {
+  background-color: #f7f7f7; /* Змініть колір за потребою */
+}
+
+input[type='number'] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0; /* Встановлюємо зовнішній відступ на 0 */
+}
+
+select {
+  -webkit-appearance: none; /* Сховати стрілку для Safari */
+  -moz-appearance: none; /* Сховати стрілку для Firefox */
+  appearance: none; /* Сховати стрілку для інших браузерів */
+  /* Додаткові стилі, які ви бажаєте застосувати */
 }

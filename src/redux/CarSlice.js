@@ -6,6 +6,7 @@ const carSlice = createSlice({
   initialState: {
     carsList: [],
     favoriteList: [],
+    showLoadMore: true,
     filters: {
       brand: '',
       price: '',
@@ -48,6 +49,7 @@ const carSlice = createSlice({
       .addCase(loadMoreCars.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
+        state.showLoadMore = action.payload?.length >= 12 ? true : false;
         state.carsList = [...state.carsList, ...action.payload];
       })
       .addCase(loadMoreCars.rejected, (state, action) => {

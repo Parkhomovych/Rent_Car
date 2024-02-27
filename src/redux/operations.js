@@ -14,7 +14,7 @@ export const getCars = createAsyncThunk('cars/getCars', async (_, thunkAPI) => {
 });
 export const loadMoreCars = createAsyncThunk(
   'cars/loadMoreCars',
-  async (data, thunkAPI) => {
+  async (data = 1, thunkAPI) => {
     try {
       const page = String(data);
 
