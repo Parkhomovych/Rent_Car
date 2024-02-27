@@ -34,15 +34,15 @@ export const selectShowLoadMore = state => state.cars.showLoadMore;
 export const selectFilteredCars = createSelector(
   [selectCars, selectFilters],
   (cars, filters) => {
-    const result = cars.filter(
+    const result = cars?.filter(
       i =>
-        i.make.includes(filters.brand) &
-        (i.rentalPrice.slice(1) <= Number(filters.price) ||
+        i.make?.includes(filters.brand) &
+        (i.rentalPrice?.slice(1) <= Number(filters?.price) ||
           filters.price === '0') &
-        (i.mileage >= Number(filters.from)) &
-        (i.mileage <= Number(filters.to) || filters.to === '')
+        (i.mileage >= Number(filters?.from)) &
+        (i.mileage <= Number(filters?.to) || filters?.to === '')
     );
     console.log(result);
-    return cars;
+    return result;
   }
 );
