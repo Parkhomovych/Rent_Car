@@ -77,6 +77,10 @@ export const SubmitBtn = styled.button`
   border-radius: 12px;
   color: #fff;
   background-color: #3470ff;
+  transition: background-color 250ms linear;
+  &:hover {
+    background-color: #0b44cd;
+  }
 `;
 
 export const BoxList = styled.ul`

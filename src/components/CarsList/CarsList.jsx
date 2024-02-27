@@ -1,8 +1,4 @@
-import {
-  selectCars,
-  selectFilteredCars,
-  selectShowLoadMore,
-} from '../../redux/selectors';
+import { selectFilteredCars, selectShowLoadMore } from '../../redux/selectors';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadMoreCars } from '../../redux/operations';
 import { CarsItem } from 'components/CarsItem/CarsItem';
@@ -16,13 +12,13 @@ export const CarsList = () => {
     dispatch(loadMoreCars(page + 1));
     setPage(pS => pS + 1);
   };
-  const cars1 = useSelector(selectFilteredCars);
-  const cars = useSelector(selectCars);
+  const cars = useSelector(selectFilteredCars) || [];
+
   const showLoadMore = useSelector(selectShowLoadMore);
   return (
     <>
       <Styled.List>
-        {cars1.length !== 0 &&
+        {cars.length !== 0 &&
           cars?.map(car => <CarsItem key={car.id} carInfo={car} />)}
       </Styled.List>
       {showLoadMore && (

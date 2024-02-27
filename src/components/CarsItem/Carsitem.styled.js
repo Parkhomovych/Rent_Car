@@ -84,6 +84,11 @@ export const BtnClose = styled.button`
 export const SvgClose = styled(IoMdClose)`
   width: 24px;
   height: 24px;
+
+  transition: color 250ms linear;
+  &:hover {
+    color: #0b44cd;
+  }
 `;
 export const ImgModal = styled.img`
   margin-bottom: 14px;
@@ -125,6 +130,10 @@ export const RentalLink = styled.a`
   line-height: 143%;
 
   color: #fff;
-  background: #3470ff;
   border-radius: 12px;
+  background-color: #3470ff;
+  transition: background-color 250ms linear;
+  &:hover {
+    background-color: #0b44cd;
+  }
 `;

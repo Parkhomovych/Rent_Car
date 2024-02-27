@@ -22,7 +22,7 @@ export const FilterForm = () => {
   const [brandValue, setBrandValue] = useState('');
 
   const [isFocusPrice, setIsFocusPrice] = useState(false);
-  const [priceValue, setPriceValue] = useState('');
+  const [priceValue, setPriceValue] = useState('0');
 
   const dispatch = useDispatch();
 
@@ -79,7 +79,7 @@ export const FilterForm = () => {
   };
   return (
     <div>
-      <Form onSubmit={subForm}>
+      <Form onSubmit={e => subForm(e)}>
         <Label>
           {isShowBrand ? <ArrowDown /> : <ArrowUp />}
           <Span> Car brand</Span>
@@ -88,6 +88,7 @@ export const FilterForm = () => {
             name="brand"
             placeholder="Enter the text"
             value={brandValue}
+            title=""
             $width="224px"
             onClick={handleIsShowBrand}
             onChange={handleValueBrand}
@@ -126,6 +127,7 @@ export const FilterForm = () => {
             name="price"
             $width="125px"
             $cursor="pointer"
+            title=""
             onClick={handleIsShowPrice}
             readOnly
           ></FilterInput>
@@ -136,6 +138,9 @@ export const FilterForm = () => {
               $width="125px"
               $height="188px"
             >
+              <li key={nanoid(10)}>
+                <Option $active={false}>0</Option>
+              </li>
               {optionPrice()}
             </BoxList>
           )}

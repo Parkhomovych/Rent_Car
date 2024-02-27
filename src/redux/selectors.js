@@ -34,12 +34,33 @@ export const selectShowLoadMore = state => state.cars.showLoadMore;
 export const selectFilteredCars = createSelector(
   [selectCars, selectFilters],
   (cars, filters) => {
-    console.log(filters);
-    const result = cars.filter(i => {
-      if (i.make.toLowerCase()) {
-        
+    const toBrand = cars.filter(
+      i => (filters.brand !== '') & i.make.includes(filters.brand)
+    );
+    const toPrice = cars.filter(
+      i =>
+        (filters.price !== '') &
+        (i.rentalPrice.slice(1) <= Number(filters.price))
+    );
+    const FromMileage = cars.filter(
+      i => (filters.from !== '') & (i.mileage >= Number(filters.from))
+    );
+    const ToMileage = cars.filter(
+      i => (filters.to !== '') & (i.mileage <= Number(filters.to))
+    );
+
+    const allFilt = cars.filter(i => {
+      if (
+        i.make.includes(filters.brand) &
+        (i.rentalPrice.slice(1) <= Number(filters.price) ||
+          filters.price === '0') &
+        (i.mileage >= Number(filters.from)) &
+        (i.mileage <= Number(filters.to) || filters.to === '')
+      ) {
+        return i;
       }
     });
-    return cars;
+
+    return allFilt;
   }
 );
