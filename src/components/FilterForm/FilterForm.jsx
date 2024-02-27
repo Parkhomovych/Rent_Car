@@ -9,7 +9,6 @@ import {
   Option,
   ValuePrice,
   SubmitBtn,
-  Reset,
 } from './FilterForm.styled';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -84,7 +83,6 @@ export const FilterForm = () => {
   return (
     <div>
       <Form onSubmit={e => subForm(e)}>
-          <Reset type="button">Reset Filters</Reset>
         <Label>
           {isShowBrand ? <ArrowDown /> : <ArrowUp />}
           <Span> Car brand</Span>
@@ -106,17 +104,17 @@ export const FilterForm = () => {
             >
               {filterBrand.map((i, idx) => {
                 if (
-                  i.toLocaleLowerCase() ===
-                  brandValue.toLocaleLowerCase().trim()
+                  i?.toLocaleLowerCase() ===
+                  brandValue?.toLocaleLowerCase()?.trim()
                 ) {
                   return (
-                    <li key={idx}>
+                    <li key={nanoid(10)}>
                       <Option $active={true}>{i}</Option>
                     </li>
                   );
                 }
                 return (
-                  <li key={idx}>
+                  <li key={nanoid(10)}>
                     <Option $active={false}>{i}</Option>
                   </li>
                 );

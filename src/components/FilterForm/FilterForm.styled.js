@@ -129,17 +129,3 @@ export const SubmitBtn = styled.button`
     background-color: #0b44cd;
   }
 `;
-
-export const Reset = styled.button`
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 143%;
-  color: #121417;
-  transition: color 1250m linear, text-decoration 1250m linear;
-  border-radius: 14px;
-
-  &:hover {
-    color: #0b44cd;
-    text-decoration: underline;
-  }
-`;
