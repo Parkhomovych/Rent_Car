@@ -5,24 +5,27 @@ import {
   ArrowDown,
   ArrowUp,
   Span,
-  SubmitBtn,
   BoxList,
   Option,
   ValuePrice,
+  SubmitBtn,
+  Reset,
 } from './FilterForm.styled';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { filtersCars } from '../../redux/CarSlice';
-import { filterBrand } from '../../redux/selectors';
+import { filterBrand, selectFilters } from '../../redux/selectors';
 import { useState } from 'react';
 import { nanoid } from 'nanoid';
 
 export const FilterForm = () => {
+  const { brand, price, from, to } = useSelector(selectFilters);
+
   const [isShowBrand, setisShowBrand] = useState(false);
-  const [brandValue, setBrandValue] = useState('');
+  const [brandValue, setBrandValue] = useState(brand);
 
   const [isFocusPrice, setIsFocusPrice] = useState(false);
-  const [priceValue, setPriceValue] = useState('0');
+  const [priceValue, setPriceValue] = useState(price);
 
   const dispatch = useDispatch();
 
@@ -77,9 +80,11 @@ export const FilterForm = () => {
 
     dispatch(filtersCars(data));
   };
+
   return (
     <div>
       <Form onSubmit={e => subForm(e)}>
+          <Reset type="button">Reset Filters</Reset>
         <Label>
           {isShowBrand ? <ArrowDown /> : <ArrowUp />}
           <Span> Car brand</Span>
@@ -145,6 +150,7 @@ export const FilterForm = () => {
             </BoxList>
           )}
         </Label>
+
         <Label>
           <Span>Car mileage / km</Span>
           <FilterInput
@@ -155,6 +161,7 @@ export const FilterForm = () => {
             type="number"
             name="from"
             placeholder="From"
+            defaultValue={from}
             $width="160px"
           ></FilterInput>
           <FilterInput
@@ -162,10 +169,10 @@ export const FilterForm = () => {
             type="number"
             name="to"
             placeholder="To"
+            defaultValue={to}
             $width="160px"
           ></FilterInput>
         </Label>
-
         <SubmitBtn type="submit">Search</SubmitBtn>
       </Form>
     </div>

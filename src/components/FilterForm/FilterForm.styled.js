@@ -70,18 +70,6 @@ export const Span = styled.span`
   line-height: 129%;
   color: #8a8a89;
 `;
-export const SubmitBtn = styled.button`
-  margin-top: auto;
-  width: 136px;
-  height: 48px;
-  border-radius: 12px;
-  color: #fff;
-  background-color: #3470ff;
-  transition: background-color 250ms linear;
-  &:hover {
-    background-color: #0b44cd;
-  }
-`;
 
 export const BoxList = styled.ul`
   width: ${p => p?.$width};
@@ -121,4 +109,37 @@ export const ValuePrice = styled.span`
   font-size: 18px;
   line-height: 111%;
   color: #121417;
+`;
+
+export const SubmitBtn = styled.button`
+  margin-top: auto;
+  width: 136px;
+  height: 48px;
+  border-radius: 12px;
+
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 143%;
+  color: #fff;
+
+  color: #fff;
+  background-color: #3470ff;
+  transition: background-color 250ms linear;
+  &:hover {
+    background-color: #0b44cd;
+  }
+`;
+
+export const Reset = styled.button`
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 143%;
+  color: #121417;
+  transition: color 1250m linear, text-decoration 1250m linear;
+  border-radius: 14px;
+
+  &:hover {
+    color: #0b44cd;
+    text-decoration: underline;
+  }
 `;
