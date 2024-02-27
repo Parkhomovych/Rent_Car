@@ -43,6 +43,6 @@ export const selectFilteredCars = createSelector(
         (i.mileage <= Number(filters.to) || filters.to === '')
     );
     console.log(result);
-    return result;
+    return cars;
   }
 );
