@@ -21,7 +21,6 @@ Modal.defaultStyles = {
   content: {
     maxWidth: '541px',
     padding: '40px',
-
     position: 'absolute',
     top: '50%',
     left: '50%',
@@ -129,5 +128,5 @@ export const CarsItem = ({ carInfo }) => {
         </Styled.RentalLink>
       </Modal>
     </Styled.Item>
-  ); 
+  );
 };

@@ -9,6 +9,7 @@ import {
   Option,
   ValuePrice,
   SubmitBtn,
+  BoxLabel,
 } from './FilterForm.styled';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -83,72 +84,81 @@ export const FilterForm = () => {
   return (
     <div>
       <Form onSubmit={e => subForm(e)}>
-        <Label>
-          {isShowBrand ? <ArrowDown /> : <ArrowUp />}
-          <Span> Car brand</Span>
-          <FilterInput
-            type="text"
-            name="brand"
-            placeholder="Enter the text"
-            value={brandValue}
-            title=""
+        <BoxLabel>
+          <Label
+            onMouseEnter={handleIsShowBrand}
+            onMouseLeave={handleIsShowBrand}
             $width="224px"
-            onClick={handleIsShowBrand}
-            onChange={handleValueBrand}
-          />
-          {isShowBrand && (
-            <BoxList
-              onClick={e => handleValueBrand(e)}
+
+          >
+            {isShowBrand ? <ArrowUp /> : <ArrowDown />}
+            <Span> Car brand</Span>
+            <FilterInput
+              type="text"
+              name="brand"
+              placeholder="Enter the text"
+              autoComplete="off"
+              value={brandValue}
+              title=""
               $width="224px"
-              $height="188px"
-            >
-              {filterBrand.map((i, idx) => {
-                if (
-                  i?.toLocaleLowerCase() ===
-                  brandValue?.toLocaleLowerCase()?.trim()
-                ) {
+              onChange={handleValueBrand}
+            />
+            {isShowBrand && (
+              <BoxList
+                onClick={e => handleValueBrand(e)}
+                $width="224px"
+                $height="188px"
+              >
+                {filterBrand.map((i, idx) => {
+                  if (
+                    i?.toLocaleLowerCase() ===
+                    brandValue?.toLocaleLowerCase()?.trim()
+                  ) {
+                    return (
+                      <li key={nanoid(10)}>
+                        <Option $active={true}>{i}</Option>
+                      </li>
+                    );
+                  }
                   return (
                     <li key={nanoid(10)}>
-                      <Option $active={true}>{i}</Option>
+                      <Option $active={false}>{i}</Option>
                     </li>
                   );
-                }
-                return (
-                  <li key={nanoid(10)}>
-                    <Option $active={false}>{i}</Option>
-                  </li>
-                );
-              })}
-            </BoxList>
-          )}
-        </Label>
-        <Label>
-          {isFocusPrice ? <ArrowUp /> : <ArrowDown />}
-          <Span> Price/ 1 hour</Span>
-          <FilterInput
-            type="text"
-            name="price"
+                })}
+              </BoxList>
+            )}
+          </Label>
+          <Label
+            onMouseEnter={handleIsShowPrice}
+            onMouseLeave={handleIsShowPrice}
             $width="125px"
-            $cursor="pointer"
-            title=""
-            onClick={handleIsShowPrice}
-            readOnly
-          ></FilterInput>
-          <ValuePrice>{`To ${priceValue}$`}</ValuePrice>
-          {isFocusPrice && (
-            <BoxList
-              onClick={e => handleTextContentPrice(e)}
+          >
+            {isFocusPrice ? <ArrowUp /> : <ArrowDown />}
+            <Span> Price/ 1 hour</Span>
+            <FilterInput
+              type="text"
+              name="price"
               $width="125px"
-              $height="188px"
-            >
-              <li key={nanoid(10)}>
-                <Option $active={false}>0</Option>
-              </li>
-              {optionPrice()}
-            </BoxList>
-          )}
-        </Label>
-
+              $cursor="pointer"
+              title=""
+              readOnly
+            ></FilterInput>
+            <ValuePrice>{`To ${priceValue}$`}</ValuePrice>
+            {isFocusPrice && (
+              <BoxList
+                onClick={e => handleTextContentPrice(e)}
+                $width="125px"
+                $height="188px"
+              >
+                <li key={nanoid(10)}>
+                  <Option $active={false}>0</Option>
+                </li>
+                {optionPrice()}
+              </BoxList>
+            )}
+          </Label>
+        </BoxLabel>
         <Label>
           <Span>Car mileage / km</Span>
           <FilterInput

@@ -8,17 +8,39 @@ export const Form = styled.form`
   align-items: center;
   justify-content: center;
   column-gap: 18px;
+  @media only screen and (max-width: 374.9px) {
+    flex-direction: column;
+    gap: 28px;
+  }
+  @media only screen and (min-width: 375px) and (max-width: 767.9px) {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 28px;
+  }
 `;
 export const BoxInput = styled.div`
   display: flex;
 `;
+export const BoxLabel = styled.div`
+  width: ${p => p?.$width};
+  display: flex;
+  column-gap: 18px;
+  @media only screen and (max-width: 374.9px) {
+    align-items: center;
+  }
+  @media only screen and (max-width: 768px) {
+    flex-direction: column;
+    gap: 28px;
+  }
+`;
 export const Label = styled.label`
   position: relative;
   display: flex;
+  width: ${p => p?.$width};
 `;
 
 export const FilterInput = styled.input`
-  width: ${p => p.$width};
+  width: ${p => p?.$width};
   height: 48px;
   padding: 14px 18px;
 
@@ -81,7 +103,7 @@ export const BoxList = styled.ul`
   column-gap: 8px;
 
   position: absolute;
-  top: 52px;
+  top: 48px;
   z-index: 10;
 
   overflow-x: auto;
