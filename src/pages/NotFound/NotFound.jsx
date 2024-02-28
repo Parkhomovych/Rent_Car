@@ -1,23 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
+import { HeadMessage, Paragraph, RedMessage } from './NotFound.styled';
 
-const HeadMessage = styled.h2`
-  margin-bottom: 32px;
-  padding: 14px;
-
-  text-align: center;
-`;
-const RedMessage = styled.span`
-  color: red;
-  font-size: 24px;
-`;
-
-const Paragraph = styled.p`
-  padding: 14px;
-  margin-bottom: 32px;
-  text-align: center;
-`;
 const NotFound = () => {
   const [time, setTime] = useState(5);
   const navigate = useNavigate();

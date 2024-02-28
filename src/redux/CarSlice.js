@@ -18,14 +18,11 @@ const carSlice = createSlice({
   },
   reducers: {
     filtersCars(state, action) {
-      // тут в payload має прилітати обʼєкт фільтрів
       state.filters = action.payload;
     },
     addFavoriteCars(state, action) {
-      // тут в payload має прилітати обʼєкт однієї машини
       state.favoriteList = [...state.favoriteList, action.payload];
     },
-    // тут в payload має прилітати ID однієї машини
     removeFavoriteCar(state, action) {
       state.favoriteList = state.favoriteList.filter(
         item => item.id !== action.payload

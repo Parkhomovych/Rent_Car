@@ -18,7 +18,6 @@ export const LoadMore = styled.button`
 
   transition: color 250ms linear, scale 250ms linear;
 
-  /* Стилі для елемента при ховері на комп'ютерах */
   @media (hover: hover) and (pointer: fine) {
     &:hover {
       scale: calc(1.2);
@@ -26,7 +25,6 @@ export const LoadMore = styled.button`
     }
   }
 
-  /* Стилі для елемента при тапі на мобільних пристроях */
   @media (hover: none) and (pointer: coarse) {
     &:active {
       color: #0b44cd;

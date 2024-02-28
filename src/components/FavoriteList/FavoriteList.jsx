@@ -1,15 +1,7 @@
 import { useSelector } from 'react-redux';
 import { selectFavoriteCars } from '../../redux/selectors';
 import { CarsItem } from 'components/CarsItem/CarsItem';
-import styled from 'styled-components';
-
-const List = styled.ul`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  row-gap: 50px;
-  column-gap: 28px;
-`;
+import { List } from './FavoriteList.styled';
 
 export const FavoriteList = () => {
   const cars = useSelector(selectFavoriteCars);
