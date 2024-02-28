@@ -10,7 +10,7 @@ export const CallBtn = () => {
   useEffect(() => {
     const idInterval = setInterval(() => {
       hendleShow();
-    }, 2000);
+    },000);
 
     return () => {
       clearInterval(idInterval);
