@@ -12,7 +12,7 @@ export const CarsList = () => {
     dispatch(loadMoreCars(page + 1));
     setPage(pS => pS + 1);
   };
-  const cars = useSelector(selectFilteredCars) || [];
+  const cars = useSelector(selectFilteredCars);
 
   const showLoadMore = useSelector(selectShowLoadMore);
   return (
