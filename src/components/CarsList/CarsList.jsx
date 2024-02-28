@@ -12,14 +12,14 @@ export const CarsList = () => {
     dispatch(loadMoreCars(page + 1));
     setPage(pS => pS + 1);
   };
-  const cars = useSelector(selectFilteredCars);
 
+  const Filteredcars = useSelector(selectFilteredCars);
   const showLoadMore = useSelector(selectShowLoadMore);
   return (
     <>
       <Styled.List>
-        {cars.length !== 0 &&
-          cars?.map(car => <CarsItem key={car.id} carInfo={car} />)}
+        {Filteredcars.length !== 0 &&
+          Filteredcars?.map(car => <CarsItem key={car.id} carInfo={car} />)}
       </Styled.List>
       {showLoadMore && (
         <Styled.LoadMore onClick={serchMoreCars}>Load More</Styled.LoadMore>

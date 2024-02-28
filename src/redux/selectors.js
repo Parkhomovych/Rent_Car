@@ -31,6 +31,7 @@ export const selectFavoriteCars = state => state.cars.favoriteList;
 export const selectIsLoading = state => state.cars.isLoading;
 export const selectError = state => state.cars.error;
 export const selectShowLoadMore = state => state.cars.showLoadMore;
+
 export const selectFilteredCars = createSelector(
   [selectCars, selectFilters],
   (cars, filters) => {

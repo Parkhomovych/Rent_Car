@@ -9,7 +9,7 @@ const carSlice = createSlice({
     showLoadMore: true,
     filters: {
       brand: '',
-      price: '',
+      price: '0',
       from: '',
       to: '',
     },
