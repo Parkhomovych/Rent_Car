@@ -1,5 +1,5 @@
 import { lazy } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, HashRouter } from 'react-router-dom';
 import { Layout } from './Layout/Layout';
 import { ThemeProvider } from 'styled-components';
 
@@ -25,14 +25,16 @@ const NotFound = lazy(() => import('../pages/NotFound/NotFound'));
 export const App = () => {
   return (
     <ThemeProvider theme={theme}>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="catalog" element={<Catalog />} />
-          <Route path="favorites" element={<Favorites />} />
-          <Route path="*" element={<NotFound />} />
-        </Route>
-      </Routes>
+      <HashRouter>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="catalog" element={<Catalog />} />
+            <Route path="favorites" element={<Favorites />} />
+            <Route path="*" element={<NotFound />} />
+          </Route>
+        </Routes>
+      </HashRouter>
     </ThemeProvider>
   );
 };

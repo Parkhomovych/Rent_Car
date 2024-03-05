@@ -2,6 +2,7 @@ import styled from 'styled-components';
 export const HomeSection = styled.section`
   display: flex;
   flex-direction: column;
+
 `;
 export const Title = styled.h1`
   text-align: center;
